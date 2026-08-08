@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://tbwflmrbulzikpwfacsx.supabase.co";
-const  SUPABASE_PUBLISHABLE_KEY = "sb_publishable_l5BBojWCbaYM7SjfXLultg_etqwk8D1";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_l5BBojWCbaYM7SjfXLultg_etqwk8D1";
 
 const supabase = window.supabase.createClient(
   SUPABASE_URL,
@@ -110,8 +110,7 @@ async function loadMessages() {
 
     const details = document.createElement("span");
     const isOwner = currentUser && message.user_id === currentUser.id;
-    const author = isOwner ? "我" : "留言用户";
-    details.textContent = `${author} · ${formatDate(message.created_at)}`;
+    details.textContent = `${isOwner ? "我" : "留言用户"} · ${formatDate(message.created_at)}`;
     meta.append(details);
 
     if (isOwner) {
@@ -135,6 +134,10 @@ async function loadMessages() {
 async function signIn(event) {
   event.preventDefault();
 
+  if (!authForm.reportValidity()) {
+    return;
+  }
+
   setStatus(authMessage);
   setAuthBusy(true);
 
@@ -150,7 +153,9 @@ async function signIn(event) {
   }
 }
 
-async function signUp() {
+async function signUp(event) {
+  event.preventDefault();
+
   if (!authForm.reportValidity()) {
     return;
   }
@@ -206,7 +211,7 @@ async function submitMessage(event) {
 
   const { error } = await supabase.from("messages").insert({
     user_id: currentUser.id,
-    content: content
+    content
   });
 
   submitMessageButton.disabled = false;
