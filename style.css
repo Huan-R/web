@@ -1,22 +1,273 @@
+:root {
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  color: #172033;
+  background: #edf2f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  font-family: Arial, "Microsoft YaHei", sans-serif;
-  background: #f4f7fb;
-  color: #1f2937;
+  background: #edf2f7;
 }
 
-main {
-  text-align: center;
+button,
+input,
+textarea {
+  font: inherit;
 }
 
 button {
-  padding: 10px 16px;
-  border: 0;
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid #176b87;
   border-radius: 6px;
-  background: #2563eb;
-  color: white;
+  background: #176b87;
+  color: #ffffff;
   cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #10546c;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.page-shell {
+  width: min(880px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 64px;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #176b87;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+h2 {
+  margin-bottom: 6px;
+  font-size: 21px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.intro,
+.section-description {
+  margin-bottom: 18px;
+  color: #5b6878;
+}
+
+.user-panel {
+  color: #445469;
+  font-size: 14px;
+  text-align: right;
+}
+
+.user-panel p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
+.panel {
+  margin-bottom: 18px;
+  padding: 24px;
+  border: 1px solid #d4dee7;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(23 32 51 / 6%);
+}
+
+.auth-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: #26364a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px 11px;
+  border: 1px solid #b9c8d5;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #172033;
+}
+
+textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #176b87;
+  outline: 3px solid rgb(23 107 135 / 16%);
+}
+
+.button-row {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 10px;
+}
+
+.button-secondary,
+.refresh-button {
+  border-color: #aebdcc;
+  background: #ffffff;
+  color: #172033;
+}
+
+.button-secondary:hover:not(:disabled),
+.refresh-button:hover:not(:disabled) {
+  background: #eef4f7;
+}
+
+.status {
+  min-height: 20px;
+  margin: 14px 0 0;
+  color: #526172;
+  font-size: 14px;
+}
+
+.status.error {
+  color: #b42318;
+}
+
+.status.success {
+  color: #087443;
+}
+
+.form-footer,
+.messages-header,
+.message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.form-footer {
+  margin-top: 10px;
+}
+
+#character-count {
+  color: #657386;
+  font-size: 13px;
+}
+
+.messages-header {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #e3e9ee;
+}
+
+.messages-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.message-item {
+  padding: 16px;
+  border: 1px solid #dce5ec;
+  border-radius: 6px;
+  background: #fbfdff;
+}
+
+.message-meta {
+  margin-bottom: 9px;
+  color: #647286;
+  font-size: 13px;
+}
+
+.message-content {
+  margin: 0;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.delete-button {
+  min-height: 30px;
+  padding: 4px 9px;
+  border-color: #d9a8a2;
+  background: #ffffff;
+  color: #a62c21;
+  font-size: 13px;
+}
+
+.delete-button:hover:not(:disabled) {
+  background: #fff1ef;
+}
+
+.empty-state {
+  margin: 4px 0;
+  color: #647286;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .page-shell {
+    width: min(100% - 24px, 880px);
+    padding-top: 28px;
+  }
+
+  .site-header {
+    display: block;
+  }
+
+  .user-panel {
+    margin-top: 18px;
+    text-align: left;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .auth-form {
+    grid-template-columns: 1fr;
+  }
+
+  .button-row {
+    grid-column: auto;
+  }
 }
