@@ -3,16 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的第一个网页</title>
+  <title>我的留言板</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>你好，我的网页</h1>
-    <p>这个网页已经部署到 GitHub Pages。</p>
-    <button id="hello-button">点我</button>
+  <main class="page-shell">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">GitHub Pages + Supabase</p>
+        <h1>我的留言板</h1>
+        <p class="intro">登录后发布留言，内容会保存到云端。</p>
+      </div>
+      <div id="user-panel" class="user-panel"></div>
+    </header>
+
+    <section id="auth-section" class="panel">
+      <h2>登录或注册</h2>
+      <p class="section-description">使用邮箱和密码访问留言板。</p>
+
+      <form id="auth-form" class="auth-form">
+        <label>
+          邮箱
+          <input id="email" type="email" placeholder="name@example.com" required>
+        </label>
+
+        <label>
+          密码
+          <input id="password" type="password" minlength="6" placeholder="至少 6 位" required>
+        </label>
+
+        <div class="button-row">
+          <button id="login-button" type="submit">登录</button>
+          <button id="signup-button" class="button-secondary" type="button">注册</button>
+        </div>
+      </form>
+
+      <p id="auth-message" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>留言</h2>
+      <p id="message-help" class="section-description">登录后即可发布留言。</p>
+
+      <form id="message-form" hidden>
+        <label>
+          内容
+          <textarea
+            id="message-content"
+            rows="4"
+            maxlength="500"
+            placeholder="写下你想说的话..."
+            required
+          ></textarea>
+        </label>
+
+        <div class="form-footer">
+          <span id="character-count">0 / 500</span>
+          <button id="submit-message-button" type="submit">发布留言</button>
+        </div>
+      </form>
+
+      <p id="message-status" class="status"></p>
+
+      <div class="messages-header">
+        <h3>全部留言</h3>
+        <button id="refresh-button" class="refresh-button" type="button" title="刷新留言">
+          刷新
+        </button>
+      </div>
+
+      <div id="messages-list" class="messages-list">
+        <p class="empty-state">正在加载留言...</p>
+      </div>
+    </section>
   </main>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script
